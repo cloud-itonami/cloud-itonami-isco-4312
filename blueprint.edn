@@ -1,0 +1,11 @@
+[{:itonami.blueprint/id "cloud-itonami-isco-4312"
+  :itonami.blueprint/name "Community Records & Statistics Desk"
+  :itonami.blueprint/isco-08 "4312"
+  :itonami.blueprint/domain :office/statistical-clerks
+  :itonami.blueprint/license "AGPL-3.0-or-later"
+  :itonami.blueprint/social-impact [:financial-transparency :service-access :local-jobs]
+  :itonami.blueprint/governor :statistical-clerks-governor
+  :itonami.blueprint/robotics true
+  :itonami.blueprint/required-technologies [:robotics :identity :forms :dmn :bpmn :audit-ledger]
+  :itonami.blueprint/status :public-oss
+  :db/id -1}]
