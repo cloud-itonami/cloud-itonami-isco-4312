@@ -5,11 +5,26 @@ Open Business Blueprint for **ISCO-08 4312**: Statistical, Finance and Insurance
 pure-cognitive work, the LLM-first wave, **no robotics gate** —
 eligible for actor implementation now.
 
-**Maturity: `:blueprint`** — blueprint only; **no actor implementation
-yet**, and none is claimed. The implemented actor will follow the
-fleet-standard pattern (advisor-LLM sealed behind the independent
-`:statistical-clerks-governor` governor, human approval workflow, append-only
-audit ledger). Fifth wave-0 cognitive batch (ADR-2607122700 addenda).
+**Maturity: `:implemented`** — StatFinanceInsuranceClerksAdvisor ⊣
+StatFinanceInsuranceClerksGovernor as a langgraph StateGraph
+(`intake → advise → govern → decide → commit/hold`, human-approval
+interrupt), modeled on cloud-itonami-isco-4311's bookkeeping actor.
+13 tests / 28 assertions green.
+
+The clerical HARD invariant — aggregation identity, checked
+deterministically:
+
+1. **Aggregation identity** — a batch's line items must sum EXACTLY to
+   its registered header total. The line-item sum is ground truth; a
+   header total that disagrees is a mistake, not a rounding matter of
+   opinion.
+2. **No empty batch** — a batch with zero line items cannot be
+   reconciled (nothing to sum).
+
+Also HARD: invented/foreign batches, unregistered organization,
+non-`:propose` effect. Escalations (always human sign-off):
+`:post-adjustment` (write-off/correction with financial effect), low
+confidence (< 0.6).
 
 
 
