@@ -1,5 +1,5 @@
 (ns statclerk.actor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [statclerk.actor :as actor]
             [statclerk.store :as store]))
 

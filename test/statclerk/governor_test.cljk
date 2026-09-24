@@ -1,5 +1,5 @@
 (ns statclerk.governor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [statclerk.store :as store]
             [statclerk.governor :as governor]))
 
