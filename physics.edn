@@ -1,0 +1,34 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README: ISCO 4312 (Statistical, Finance and Insurance Clerks) is a Wave 0
+;; (cognitive substrate) occupation with no robotics gate. The physical work
+;; that remains is the paper the clerk's figures come from: bundles of
+;; returned survey questionnaires and insurance claim files are loaded into a
+;; document scanner's feeder, and trolleys of returned forms are moved from
+;; the mail room to the data-capture room.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-4312"
+ :cases
+ [{:id :claim-bundle-to-scanner
+   :kind :manipulator
+   :procedure "arm moves a bundle of insurance claim files from the in-tray to the scanner feeder"
+   :params {:l1-m 0.40 :l2-m 0.35 :m1-kg 3.5 :m2-kg 2.5 :payload-kg 2.0
+            :from [0.50 0.05] :to [0.15 0.50] :steps 500}
+   :sweep {:param :duration-s :values [0.4 0.6 0.8 1.2 2.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 40.0 :basis "estimate: continuous shoulder torque of a ~3 kg-payload desktop collaborative arm"}
+   :boundary {:lo 0.2 :hi 3.0}}
+  {:id :survey-returns-trolley
+   :kind :transport
+   :procedure "tug robot pulls a trolley of returned survey questionnaires from the mail room to data capture"
+   :params {:mass-kg 40.0 :distance-m 40.0 :v-max-mps 1.0 :a-max-mps2 0.5
+            :brake-decel-mps2 0.8 :drive-force-n 60.0 :crr 0.02
+            :cog-height-m 0.60 :support-half-length-m 0.30}
+   :sweep {:param :payload-kg :values [10.0 25.0 40.0 55.0 70.0 90.0]}
+   :quantity :cycle-time-s
+   :limit {:max 45.0 :basis "estimate: one 40 m corridor leg at walking pace with a 10 % allowance, so capture is not starved"}
+   :boundary {:lo 5.0 :hi 400.0}}]}
