@@ -2,7 +2,7 @@
   "The ledger's job is to say what authorised each write. These tests
   exercise both directions: the entries it must build, and the ones it
   must refuse to build."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [statclerk.actor :as actor]
             [statclerk.advisor :as advisor]
             [statclerk.ledger :as ledger]
